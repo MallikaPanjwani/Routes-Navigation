@@ -1,0 +1,18 @@
+<h1 class="text-center">User Dashboard</h1>
+canActivate:{{canActivateFlag}}
+<br>
+<button type="submit" class="btn btn-danger" (click)="addUser()">Add User</button>
+<table class="table table-bordered">
+	<tr class="bg-primary">
+		<th>Id</th>
+		<th>Name</th>
+		<th>Username</th>
+		<th>Email</th>
+	</tr>
+	<tr *ngFor="let user of users">
+		<td>{{user.id}}</td>
+		<td>{{user.name}}</td>
+		<td>{{user.username}}</td>
+		<td>{{user.email}}</td>
+	</tr>
+</table>
