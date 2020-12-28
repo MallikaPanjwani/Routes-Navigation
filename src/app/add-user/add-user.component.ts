@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import{FormControl} from '@angular/forms'
 @Component({
   selector: "app-add-user",
   templateUrl: "./add-user.component.html",
@@ -7,6 +7,6 @@ import { Component, OnInit } from "@angular/core";
 })
 export class AddUserComponent implements OnInit {
   constructor() {}
-
+username:FormControl=new FormControl(); 
   ngOnInit() {}
 }

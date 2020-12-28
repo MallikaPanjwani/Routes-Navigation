@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { RouterModule, Routes } from "@angular/router";
@@ -13,6 +13,7 @@ import { UserComponent } from "./user/user.component";
 import { AuthService } from "./auth.service";
 import { AuthGuard } from "./auth.guard";
 import { AddUserComponent } from "./add-user/add-user.component";
+import { UserChangesGuard } from "./user-changes.guard";
 
 const routes: Routes = [
   { path: " ", redirectTo: "home" },
@@ -20,7 +21,11 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "home/:id", component: UserComponent },
-  { path: "addUser", component: AddUserComponent }
+  {
+    path: "addUser",
+    component: AddUserComponent,
+    canDeactivate: [UserChangesGuard]
+  }
 ];
 
 @NgModule({
@@ -28,7 +33,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -39,6 +45,6 @@ const routes: Routes = [
     AddUserComponent
   ],
   bootstrap: [AppComponent],
-  providers: [UserService, AuthService, AuthGuard]
+  providers: [UserService, AuthService, AuthGuard, UserChangesGuard]
 })
 export class AppModule {}
